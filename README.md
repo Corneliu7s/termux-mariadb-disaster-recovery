@@ -36,3 +36,25 @@ MariaDB 11.x, Termux, Bash, Git
 
 ## Next: Week 2 Query Performance Tuning
 `EXPLAIN`, `CREATE INDEX`, `slow_query_log` analysis.
+
+### Results After Index
+- `EXPLAIN` now shows `type: ref`, `key: idx_dept`
+- Rows examined: 5 → 3 = **40% reduction**
+- Query time: 0.011s → 0.005s = **2x faster**
+- Profiling confirmed wall time: `0.02219223` sec
+
+### Evidence
+- Before/After EXPLAIN: `week2-query-tuning/01-explain-before-after.png`
+- Index + Profiling proof: `week2-query-tuning/02-show-index-profiling.png`
+
+### Skills Demonstrated
+- Execution plan analysis: `EXPLAIN`, interpreting `type`, `rows`, `key`
+- Index strategy: `CREATE INDEX`, choosing columns based on WHERE clauses
+- Performance validation: `SET profiling=1`, `SHOW PROFILES`, wall time
+- Query tuning: Converting `ALL` scans to `ref` index lookups
+
+## Tools Used
+MariaDB 11.x, EXPLAIN, SHOW INDEX, Query Profiler, Termux, Git
+
+## Next: Week 3 - Backup Automation & Monitoring
+Automated `mysqldump` via cron, `slow_query_log` parsing, email alerts for long queries.
