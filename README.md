@@ -1,9 +1,11 @@
-# Termux MariaDB Disaster Recovery
-
-**L1 DBA Project: Database Recovery on Android**  
-Tested on MariaDB 11.x, Termux, Android 13
-
-## Week 1: Disaster Recovery - 2026-04-21
+# Change file paths in Week 3 table to 
+# week3-backup-automation/backup.sh# Termux MariaDB 
+# Disaster Recovery
+git add README.md **L1 DBA Project: Database 
+Recovery on Android** Tested on MariaDB 11.x, 
+Termux, Android 13 git commit -m "Docs: Update Week 
+3 file paths after folder move"
+git push## Week 1: Disaster Recovery - 2026-04-21
 
 **Objective**: Recover MariaDB from InnoDB crash and auth lockout. Validate backup/restore procedures.
 
@@ -55,7 +57,6 @@ MariaDB 11.x, Termux, Bash, Git
 
 ## Tools Used
 MariaDB 11.x, EXPLAIN, SHOW INDEX, Query Profiler, Termux, Git
-
 ## Week 3: Backup Automation & Monitoring
 
 **Objective:** Automate daily MariaDB backups and enable performance monitoring.
@@ -63,11 +64,11 @@ MariaDB 11.x, EXPLAIN, SHOW INDEX, Query Profiler, Termux, Git
 ### Deliverables
 | File | Purpose |
 | --- | --- |
-| `backup.sh` | Automated `mariadb-dump` with timestamp + 7-day log rotation |
-| `cronjob.txt` | Cron schedule: `30 2 * * *` daily backup without manual runs |
-| `monitoring.sql` | Enables `slow_query_log`, runs `EXPLAIN` + `SHOW INDEX` |
-| `monitoring_output.txt` | Proof: slow log ON, query execution plans, index verification |
-| `week3_b15_classic.sql` | Database schema with PK/FK relationships being monitored |
+| `week3-backup-automation/backup.sh` | Automated `mariadb-dump` with timestamp + 7-day log rotation |
+| `week3-backup-automation/cronjob.txt` | Cron schedule: `30 2 * * *` daily backup without manual runs |
+| `week3-backup-automation/monitoring.sql` | Enables `slow_query_log`, runs `EXPLAIN` + `SHOW INDEX` |
+| `week3-backup-automation/monitoring_output.txt` | Proof: slow log ON, query execution plans, index verification |
+| `week3-backup-automation/week3_b15_classic.sql` | Database schema with PK/FK relationships being monitored |
 
 ### Key Skills Demonstrated
 1. **Backup Automation**: Scripted `mariadb-dump` + cron scheduling
@@ -76,6 +77,51 @@ MariaDB 11.x, EXPLAIN, SHOW INDEX, Query Profiler, Termux, Git
 
 ### How to Test
 ```bash
-./backup.sh                    # Manual backup test
-crontab -l                     # Verify cron schedule
-mariadb -u root b15_classic < monitoring.sql  # Enable monitoring
+./week3-backup-automation/backup.sh                    # Manual backup test
+crontab -l                                             # Verify cron schedule
+mariadb -u root b15_classic < week3-backup-automation/monitoring.sql  # Enable monitoring
+
+## Week 4: Disaster Recovery Testing
+
+**Objective:** Simulate full database loss and restore from backup with data integrity verification.
+
+### Deliverables
+| File | Purpose |
+| --- | --- |
+| `week4-disaster-recovery/restore.sh` | Automated DR test: drop → restore → verify |
+
+### Key Skills Demonstrated
+1. **Disaster Recovery**: Full restore workflow from `.sql` backup
+2. **Data Integrity**: Verification via row counts on critical tables
+3. **Production Debugging**: Fixed 4 real incidents:
+   - Empty backups from wrong DB target
+   - `USE dbname;` statement overriding restore target
+   - Termux bash glob expansion failures in subshells
+   - Schema mismatch in verification queries
+4. **Script Hardening**: Hardcoded paths for reliability in constrained shells
+
+### Verified Restore Results
+
+```
+employee_count: 23
+office_count: 7
+customer_count: 122
+```
+
+###How to Test
+```bash
+./week4-disaster-recovery/restore.sh
+
+
+
+
+###Evidence
+
+- Successful DR run: `=== RESTORE COMPLETE ===`
+
+- All table counts match source `classicmodels` dataset
+
+
+
+
+
