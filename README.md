@@ -56,5 +56,26 @@ MariaDB 11.x, Termux, Bash, Git
 ## Tools Used
 MariaDB 11.x, EXPLAIN, SHOW INDEX, Query Profiler, Termux, Git
 
-## Next: Week 3 - Backup Automation & Monitoring
-Automated `mysqldump` via cron, `slow_query_log` parsing, email alerts for long queries.
+## Week 3: Backup Automation & Monitoring
+
+**Objective:** Automate daily MariaDB backups and enable performance monitoring.
+
+### Deliverables
+| File | Purpose |
+| --- | --- |
+| `backup.sh` | Automated `mariadb-dump` with timestamp + 7-day log rotation |
+| `cronjob.txt` | Cron schedule: `30 2 * * *` daily backup without manual runs |
+| `monitoring.sql` | Enables `slow_query_log`, runs `EXPLAIN` + `SHOW INDEX` |
+| `monitoring_output.txt` | Proof: slow log ON, query execution plans, index verification |
+| `week3_b15_classic.sql` | Database schema with PK/FK relationships being monitored |
+
+### Key Skills Demonstrated
+1. **Backup Automation**: Scripted `mariadb-dump` + cron scheduling
+2. **Performance Monitoring**: `slow_query_log`, `EXPLAIN`, index analysis  
+3. **Production Ops**: Log rotation, unattended execution, Git versioning
+
+### How to Test
+```bash
+./backup.sh                    # Manual backup test
+crontab -l                     # Verify cron schedule
+mariadb -u root b15_classic < monitoring.sql  # Enable monitoring
