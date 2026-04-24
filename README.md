@@ -9,7 +9,7 @@ Production-grade backup and disaster recovery automation for MariaDB on Android/
 ### Deliverables
 | File | Purpose |
 | --- | --- |
-| [week1-setup/install.sh](week1-setup/install.sh) | Termux MariaDB installation + secure setup |
+| [week1-disaster-recovery/install.sh](week1-disaster-recovery/install.sh) | Termux MariaDB installation + secure setup |
 
 ### Key Skills Demonstrated
 - **Environment Setup**: MariaDB 10.x on Android/Termux 
@@ -23,8 +23,8 @@ Production-grade backup and disaster recovery automation for MariaDB on Android/
 ### Deliverables
 | File | Purpose |
 | --- | --- |
-| [week2-indexing/01_setup_indexes.sql](week2-indexing/01_setup_indexes.sql) | Composite indexes on frequently queried columns |
-| [week2-indexing/02_explain_queries.sql](week2-indexing/02_explain_queries.sql) | Before/after EXPLAIN analysis |
+| [week2-query-tuning/01_setup_indexes.sql](week2-query-tuning/01_setup_indexes.sql) | Composite indexes on frequently queried columns |
+| [week2-query-tuning/02_explain_queries.sql](week2-query-tuning/02_explain_queries.sql) | Before/after EXPLAIN analysis |
 
 ### Key Skills Demonstrated
 - **Performance Tuning**: Reduced query time via composite indexes
@@ -78,9 +78,9 @@ Run: ./week4-disaster-recovery/restore.sh
 
 ## Repository Structure
 termux-mariadb-disaster-recovery/
-├── week1-setup/
+├── week1-disaster-recovery/
 │   └── install.sh
-├── week2-indexing/
+├── week2-query-tuning/
 │   ├── 01_setup_indexes.sql
 │   └── 02_explain_queries.sql
 ├── week3-backup-automation/
