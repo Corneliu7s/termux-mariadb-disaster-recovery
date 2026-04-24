@@ -9,7 +9,7 @@ Production-grade backup and disaster recovery automation for MariaDB on Android/
 ### Deliverables
 | File | Purpose |
 | --- | --- |
-| week1-setup/install.sh | Termux MariaDB installation + secure setup |
+| [week1-setup/install.sh](week1-setup/install.sh) | Termux MariaDB installation + secure setup |
 
 ### Key Skills Demonstrated
 - **Environment Setup**: MariaDB 10.x on Android/Termux 
@@ -23,8 +23,8 @@ Production-grade backup and disaster recovery automation for MariaDB on Android/
 ### Deliverables
 | File | Purpose |
 | --- | --- |
-| week2-indexing/01_setup_indexes.sql | Composite indexes on frequently queried columns |
-| week2-indexing/02_explain_queries.sql | Before/after EXPLAIN analysis |
+| [week2-indexing/01_setup_indexes.sql](week2-indexing/01_setup_indexes.sql) | Composite indexes on frequently queried columns |
+| [week2-indexing/02_explain_queries.sql](week2-indexing/02_explain_queries.sql) | Before/after EXPLAIN analysis |
 
 ### Key Skills Demonstrated
 - **Performance Tuning**: Reduced query time via composite indexes
@@ -38,7 +38,7 @@ Production-grade backup and disaster recovery automation for MariaDB on Android/
 ### Deliverables
 | File | Purpose |
 | --- | --- |
-| week3-backup-automation/backup.sh | mysqldump with timestamped files |
+| [week3-backup-automation/backup.sh](week3-backup-automation/backup.sh) | mysqldump with timestamped files |
 
 ### Key Skills Demonstrated
 1. **Backup Automation**: mysqldump with --single-transaction for consistency
@@ -52,7 +52,7 @@ Production-grade backup and disaster recovery automation for MariaDB on Android/
 ### Deliverables
 | File | Purpose |
 | --- | --- |
-| week4-disaster-recovery/restore.sh | Automated DR test: drop → restore → verify |
+| [week4-disaster-recovery/restore.sh](week4-disaster-recovery/restore.sh) | Automated DR test: drop → restore → verify |
 
 ### Key Skills Demonstrated
 1. **Disaster Recovery**: Full restore workflow from .sql backup
