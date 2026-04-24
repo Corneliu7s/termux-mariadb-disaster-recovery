@@ -1,22 +1,70 @@
-# Change file paths in Week 3 table to 
-# week3-backup-automation/backup.sh# Termux MariaDB 
-# Disaster Recovery
-git add README.md **L1 DBA Project: Database 
-Recovery on Android** Tested on MariaDB 11.x, 
-Termux, Android 13 git commit -m "Docs: Update Week 
-3 file paths after folder move"
-git push## Week 1: Disaster Recovery - 2026-04-21
+# Termux MariaDB Disaster Recovery
 
-**Objective**: Recover MariaDB from InnoDB crash and auth lockout. Validate backup/restore procedures.
+Production-grade backup and disaster recovery automation for MariaDB on Android/Termux.
 
-### Incident Simulation
-Server failed with `ERROR 2002 (HY000): Can't connect to local MySQL server through socket`. 
-Root cause: `mariadbd` process not running, socket file missing.
+## Week 1: Environment Setup & Baseline
 
-### Resolution Steps
-1. **Diagnosed** socket failure using `ps aux | grep mysql` - no process found
-2. **Recovered** with `mariadbd-safe --user=mysql &` - bypassed init system issues
-3. **Validated** data integrity: `SHOW DATABASES;` confirmed `ca_licenses`, `corruption_lab` intact
+**Objective:** Set up MariaDB on Termux and load the `classicmodels` dataset.
+
+### Deliverables
+| File | Purpose |
+| --- | --- |
+| `week1-setup/install.sh` | Termux MariaDB installation + secure setup |
+
+### Key Skills Demonstrated
+- **Environment Setup**: MariaDB 10.x on Android/Termux 
+- **Database Initialization**: `mysql_install_db` and `mysql_secure_installation`
+- **Data Import**: Loaded MySQL `classicmodels` sample database
+
+## Week 2: Query Tuning & Indexing
+
+**Objective:** Optimize slow queries on `b15_classic` database using indexes and EXPLAIN.
+
+### Deliverables
+| File | Purpose |
+| --- | --- |
+| `week2-indexing/01_setup_indexes.sql` | Composite indexes on frequently queried columns |
+| `week2-indexing/02_explain_queries.sql` | Before/after EXPLAIN analysis |
+
+### Key Skills Demonstrated
+- **Performance Tuning**: Reduced query time via composite indexes
+- **EXPLAIN Analysis**: Identified full table scans vs index usage
+- **Schema Design**: Added indexes on `employee_name`, `department_id`, `salary`
+
+## Week 3: Backup Automation
+
+**Objective:** Automate daily backups of `classicmodels` database.
+
+### Deliverables
+| File | Purpose |
+| --- | --- |
+| `week3-backup-automation/backup.sh` | mysqldump with timestamped files |
+
+### Key Skills Demonstrated
+1. **Backup Automation**: `mysqldump` with `--single-transaction` for consistency
+2. **Cron Scheduling**: Daily backups to `~/backups/`
+3. **Storage Management**: 194KB compressed SQL dumps
+
+## Week 4: Disaster Recovery Testing
+
+**Objective:** Simulate full database loss and restore from backup with data integrity verification.
+
+### Deliverables
+| File | Purpose |
+| --- | --- |
+| `week4-disaster-recovery/restore.sh` | Automated DR test: drop → restore → verify |
+
+### Key Skills Demonstrated
+1. **Disaster Recovery**: Full restore workflow from `.sql` backup
+2. **Data Integrity**: Verification via row counts on critical tables
+3. **Production Debugging**: Fixed 4 real incidents:
+   - Empty backups from wrong DB target
+   - `USE dbname;` statement overriding restore target
+   - Termux bash glob expansion failures in subshells
+   - Schema mismatch in verification queries
+4. **Script Hardening**: Hardcoded paths for reliability in constrained shells
+
+### Verified Restore Results3. **Validated** data integrity: `SHOW DATABASES;` confirmed `ca_licenses`, `corruption_lab` intact
 4. **Backed up** using `mysqldump ca_licenses > backup.sql`
 5. **Tested restore**: Dropped and recreated DB from backup successfully
 
